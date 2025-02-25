@@ -11,10 +11,10 @@ function ShoveBoxButton({
     return (
         <Button
             onClick={() => {
-                setPosition(4 + position);
+                setPosition(position + 4);
             }}
         >
-            Shove the Box
+            ShoveBoxButton
         </Button>
     );
 }
@@ -22,26 +22,17 @@ function ShoveBoxButton({
 function MoveableBox({ position }: { position: number }): React.JSX.Element {
     return (
         <div
-            style={{
-                marginLeft: position.toString() + "px",
-                border: "1px solid blue",
-                verticalAlign: "bottom",
-                display: "inline-block",
-                backgroundColor: "blue",
-                height: "100px",
-                width: "100px",
-            }}
             data-testid="moveable-box"
+            style={{ marginLeft: position.toString() + "px" }}
         ></div>
     );
 }
 
 export function ShoveBox(): React.JSX.Element {
     const [position, setPosition] = useState<number>(10);
-
     return (
         <div>
-            <h3>ShoveBox</h3>
+            <h2>ShoveBox</h2>
             <span>The box is currently located at: {position}</span>
             <div>
                 <ShoveBoxButton
