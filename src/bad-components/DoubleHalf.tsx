@@ -6,14 +6,14 @@ interface DoubleHalfProps {
     setDhValue: (newValue: number) => void;
 }
 
-function Half({ dhValue, setDhValue }: DoubleHalfProps): React.JSX.Element {
+function Halve({ dhValue, setDhValue }: DoubleHalfProps): React.JSX.Element {
     return (
         <Button
             onClick={() => {
                 setDhValue(dhValue * 0.5);
             }}
         >
-            Half
+            Halve
         </Button>
     );
 }
@@ -38,7 +38,7 @@ export function DoubleHalf(): React.JSX.Element {
             <div>
                 The current value is: <span>{dhValue}</span>
             </div>
-            <Half dhValue={dhValue} setDhValue={setDhValue}></Half>
+            <Halve dhValue={dhValue} setDhValue={setDhValue}></Halve>
             <Double dhValue={dhValue} setDhValue={setDhValue}></Double>
         </div>
     );
