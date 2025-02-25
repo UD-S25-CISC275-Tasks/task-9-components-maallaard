@@ -26,23 +26,23 @@ export function ChooseTeam(): React.JSX.Element {
             <h2>ChooseTeam</h2>
             <Row>
                 <Col>
-                    {allOptions.map((option: string) => (
-                        <div key={option}>
+                    {allOptions.map((x: string) => (
+                        <div key={x}>
                             ChooseMember{" "}
                             <Button
                                 onClick={() => {
-                                    ChooseMember(team, option);
+                                    ChooseMember(team, x);
                                 }}
                             >
-                                {option}
+                                {x}
                             </Button>
                         </div>
                     ))}
                 </Col>
                 <Col>
-                    <strong>Team:</strong>
-                    {team.map((member: string) => (
-                        <li key={member}>{member}</li>
+                    <strong>Team: </strong>
+                    {team.map((x: string) => (
+                        <li key={x}>{x}</li>
                     ))}
                     <Button onClick={ClearTeam}>ClearTeam</Button>
                 </Col>
