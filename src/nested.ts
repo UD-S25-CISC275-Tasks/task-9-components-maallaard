@@ -88,16 +88,16 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    let csv: string[] = [];
-    csv.push("id,name,options,points,published");
+    let csv: string[] = ["id,name,options,points,published"];
     for (let i = 0; i < questions.length; i++) {
-        let line: string[] = [];
-        line.push(questions[i].id.toString());
-        line.push(questions[i].name);
-        line.push(questions[i].options.length.toString());
-        line.push(questions[i].points.toString());
-        line.push(questions[i].published ? "true" : "false");
-        csv.push(line.join(","));
+        let line: string[] = [
+            questions[i].id.toString(),
+            questions[i].name,
+            questions[i].options.length.toString(),
+            questions[i].points.toString(),
+            questions[i].published ? "true" : "false",
+        ];
+        csv = [...csv, line.join(",")];
     }
     return csv.join("\n");
 }
@@ -110,14 +110,17 @@ export function toCSV(questions: Question[]): string {
  */
 export function makeAnswers(questions: Question[]): Answer[] {
     let answers: Answer[] = [];
-    questions.forEach((x) =>
-        answers.push({
-            questionId: x.id,
-            text: "",
-            submitted: false,
-            correct: false,
-        }),
-    );
+    questions.forEach((x) => {
+        answers = [
+            ...answers,
+            {
+                questionId: x.id,
+                text: "",
+                submitted: false,
+                correct: false,
+            },
+        ];
+    });
     return answers;
 }
 
@@ -127,11 +130,12 @@ export function makeAnswers(questions: Question[]): Answer[] {
  */
 export function publishAll(questions: Question[]): Question[] {
     let allPublished: Question[] = [];
-    questions.forEach((x) =>
-        allPublished.push(
+    questions.forEach((x) => {
+        allPublished = [
+            ...allPublished,
             (x = { ...x, options: [...x.options], published: true }),
-        ),
-    );
+        ];
+    });
     return [...allPublished];
 }
 
@@ -262,10 +266,10 @@ export function duplicateQuestionInArray(
 ): Question[] {
     let result: Question[] = [];
     questions.forEach((question) => {
-        result.push(question);
+        result = [...result, question];
         if (question.id === targetId) {
             const duplicated = duplicateQuestion(newId, question);
-            result.push(duplicated);
+            result = [...result, duplicated];
         }
     });
     return result;

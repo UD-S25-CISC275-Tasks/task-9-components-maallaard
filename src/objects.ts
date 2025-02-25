@@ -76,7 +76,7 @@ export function toShortForm(question: Question): string {
  */
 export function toMarkdown(question: Question): string {
     let markdown: string[] = ["# " + question.name, question.body];
-    question.options.forEach((x) => markdown.push("- " + x));
+    question.options.forEach((x) => (markdown = [...markdown, "- " + x]));
     return markdown.join("\n");
 }
 
